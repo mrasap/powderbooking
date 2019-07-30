@@ -25,6 +25,25 @@ backend:
   # TODO: add resources
   resources: {}
 
+frontend:
+  replicaCount: 1
+
+  image:
+    repo: powderbooking-frontend
+    tag: latest
+    pullPolicy: always
+
+  ingress:
+    enabled: true
+    paths:
+      - /
+    # TODO: register DNS
+    hosts:
+      - powderbooking.com
+
+  # TODO: add resources
+  resources: {}
+
 
 nginx-ingress:
   controller:
@@ -32,7 +51,7 @@ nginx-ingress:
       requests:
         cpu: 100m
         memory: 64Mi
-  defaultBackend:
+  defaultfrontend:
     resources:
       limits:
         cpu: 10m
