@@ -35,3 +35,24 @@ List the environmental variables related to postgresql
       name: {{ .Release.Name }}-postgresql
       key: postgresql-password
 {{- end -}}
+
+{{/*
+List the environmental variables related to the scraper
+*/}}
+{{- define "env.scraper" -}}
+- name: WEATHERUNLOCKED_APP_ID
+  valueFrom:
+    secretKeyRef:
+      name: {{ .Release.Name }}-scraper-secret
+      key: WEATHERUNLOCKED_APP_ID
+- name: WEATHERUNLOCKED_APP_KEY
+  valueFrom:
+    secretKeyRef:
+      name: {{ .Release.Name }}-scraper-secret
+      key: WEATHERUNLOCKED_APP_KEY
+- name: OPENWEATHERMAP_APP_ID
+  valueFrom:
+    secretKeyRef:
+      name: {{ .Release.Name }}-scraper-secret
+      key: OPENWEATHERMAP_APP_ID
+{{- end -}}

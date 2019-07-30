@@ -37,7 +37,6 @@ spec:
 {{ include "env.postgresql" . | indent 12 }}
           ports:
             - name: http
-              # TODO: add uwsgi
               containerPort: 8080
               protocol: TCP
           livenessProbe:

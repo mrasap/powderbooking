@@ -21,12 +21,12 @@ metadata:
 spec:
   tls:
     - hosts:
-      {{- range .Values.backend.ingress.hosts }}
+      {{- range .Values.frontend.ingress.hosts }}
         - {{ . | quote }}
       {{- end }}
-      secretName: {{ .Release.Name }}-backend
+      secretName: {{ .Release.Name }}-frontend
   rules:
-  {{- range .Values.backend.ingress.hosts }}
+  {{- range .Values.frontend.ingress.hosts }}
     - host: {{ . | quote }}
       http:
         paths:

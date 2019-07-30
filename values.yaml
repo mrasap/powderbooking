@@ -3,6 +3,10 @@ email: your@email.here
 # TODO: make functionally different environments
 environment: production
 
+weatherUnlockedAppId: your-secret-here
+weatherUnlockedAppKey: your-secret-here
+openWeatherMapAppId: your-secret-here
+
 image:
   profile: mrasap
 
@@ -43,6 +47,22 @@ frontend:
 
   # TODO: add resources
   resources: {}
+
+scraper:
+  image:
+    repo: powderbooking-scraper
+    tag: latest
+    pullPolicy: Always
+
+  restartPolicy: Never
+
+  weather:
+    # At minute 1 past every 6th hour
+    schedule: '1 */6 * * *'
+
+  forecast:
+    # At 01:01 on every day-of-month
+    schedule: '1 1 */1 * *'
 
 
 nginx-ingress:
