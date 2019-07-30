@@ -1,0 +1,52 @@
+email: your@email.here
+
+# TODO: make functionally different environments
+environment: production
+
+image:
+  profile: mrasap
+
+backend:
+  replicaCount: 1
+
+  image:
+    repo: powderbooking-backend
+    tag: latest
+    pullPolicy: always
+
+  ingress:
+    enabled: true
+    paths:
+      - /
+    # TODO: register DNS
+    hosts:
+      - api.powderbooking.com
+
+  # TODO: add resources
+  resources: {}
+
+
+nginx-ingress:
+  controller:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 64Mi
+  defaultBackend:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 20Mi
+      requests:
+        cpu: 10m
+        memory: 20Mi
+
+postgresql:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 250m
+
+  postgresqlUsername: powderbooking
+  postgresqlPassword: a-super-secret-password
+  postgresqlDatabase: powderbooking
