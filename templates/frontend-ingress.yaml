@@ -1,8 +1,8 @@
 {{- if .Values.frontend.ingress.enabled -}}
-{{/*These variables are required because we are referencing to them within a range function,
-    which would change the scope*/}}
-{{- $ingressPaths := .Values.frontend.ingress.paths -}}
-{{- $name := printf "%s-%s" .Chart.Name "frontend" -}}
+  {{/*These variables are required because we are referencing to them within a range function,
+  which would change the scope*/}}
+  {{- $ingressPaths := .Values.frontend.ingress.paths -}}
+  {{- $name := printf "%s-%s" .Release.Name "frontend" -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -21,20 +21,20 @@ metadata:
 spec:
   tls:
     - hosts:
-      {{- range .Values.frontend.ingress.hosts }}
+      {{- range .Values.backend.ingress.hosts }}
         - {{ . | quote }}
       {{- end }}
-      secretName: {{ .Release.Name }}-frontend
+      secretName: {{ .Release.Name }}-backend
   rules:
-  {{- range .Values.frontend.ingress.hosts }}
+  {{- range .Values.backend.ingress.hosts }}
     - host: {{ . | quote }}
       http:
         paths:
-	{{- range $ingressPaths }}
+    {{- range $ingressPaths }}
           - path: {{ . }}
-            frontend:
+            backend:
               serviceName: {{ $name }}
               servicePort: 80
-	{{- end }}
+    {{- end }}
   {{- end }}
 {{- end }}

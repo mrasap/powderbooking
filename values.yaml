@@ -12,7 +12,7 @@ backend:
   image:
     repo: powderbooking-backend
     tag: latest
-    pullPolicy: always
+    pullPolicy: Always
 
   ingress:
     enabled: true
@@ -31,7 +31,7 @@ frontend:
   image:
     repo: powderbooking-frontend
     tag: latest
-    pullPolicy: always
+    pullPolicy: Always
 
   ingress:
     enabled: true

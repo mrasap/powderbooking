@@ -3,10 +3,6 @@ dependencies:
 - name: nginx-ingress
   version: "1.6.17"
   repository: "@stable"
-# https://hub.kubeapps.com/charts/jetstack/cert-manager
-- name: cert-manager
-  version: "v0.8.0"
-  repository: "@jetstack"
 # https://hub.kubeapps.com/charts/stable/postgresql
 - name: postgresql
   version: "5.3.8"

@@ -1,8 +1,8 @@
-{{- if .Values.backend.ingress.enabled -}}
+{{- if .Values.frontend.ingress.enabled -}}
 {{/*These variables are required because we are referencing to them within a range function,
     which would change the scope*/}}
 {{- $ingressPaths := .Values.backend.ingress.paths -}}
-{{- $name := printf "%s-%s" .Chart.Name "backend" -}}
+{{- $name := printf "%s-%s" .Release.Name "backend" -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
